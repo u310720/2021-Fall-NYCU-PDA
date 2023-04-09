@@ -11,11 +11,12 @@
 using namespace std;
 //#define DEBUG
 
+int RUNTIME_LIMIT = 250;
+
 string _case = "ami49"; // imported file names
 mt19937 gen(time(NULL));
 bool legal_flag = false; // if newF is legal, then switch cost function to continue optimizing area and wire
 double time_start;
-int runtime_limit = 250;
 
 double alpha = 0.5; // user-define parameter
 enum operation
@@ -460,7 +461,7 @@ floorplan *optimize(floorplan *F)
             count = 0;
 
         //cout << F->cost << " " << count << endl; // DEBUG
-    } while ((clock() - time_start) / CLOCKS_PER_SEC < runtime_limit && count < round_limit);
+    } while ((clock() - time_start) / CLOCKS_PER_SEC < RUNTIME_LIMIT && count < round_limit);
 
     return F;
 }
@@ -639,7 +640,7 @@ int main(int argc, char **argv)
             delete sb;
             sb = backupSolution(F);
         }
-    } while ((clock() - time_start) / CLOCKS_PER_SEC < runtime_limit);
+    } while ((clock() - time_start) / CLOCKS_PER_SEC < RUNTIME_LIMIT);
 
     //outputDEBUG(F); // DEBUG
     outputFloorplan(sb, OutFile, time_start);
