@@ -1,1 +1,1 @@
-# Floorplanning - Sequerrce-Pair
+# Floorplanning - Sequence-Pair
